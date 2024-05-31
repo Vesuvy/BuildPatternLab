@@ -1,36 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BuildPatternLab
+﻿namespace BuildPatternLab
 {   
-    internal class ConcreteDogBuilder : DogBuilder
+    public class ConcreteDogBuilder : DogBuilder
     {
-        private Dog _dog = new();
-        public override void BuildName(string name)
+        private readonly Dog _dog;
+
+        public ConcreteDogBuilder()
+        {
+            _dog = new Dog();
+        }
+        public override DogBuilder BuildName(string name)
         {
             _dog.Name = name;
+            return this;
         }
 
-        public override void BuildAge(int age)
+        public override DogBuilder BuildAge(int age)
         {
+            _dog.Age = age;
+            return this;
+        }
+
+        public override DogBuilder BuildBreed(string breed)
+        {
+            _dog.Breed = breed;
+            return this;
+        }
+
+        public override DogBuilder BuildAddToys(List<string> toys)
+        {
+            if (_dog.Toys == null)
+            {
+                _dog.Toys = new List<string>(toys);
+            }
+            _dog.Toys.AddRange(toys);
             
+            return this;
         }
 
-        public override void BuildBreed(string breed)
-        {
-
-        }
-
-        public override void BuildAddToy(string toy)
-        {
-            
-        }
-
-        public override Dog Build()
+        public override Dog GetDog()
         {
             return _dog;
         }

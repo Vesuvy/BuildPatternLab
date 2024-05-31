@@ -2,11 +2,11 @@
 {
     public abstract class DogBuilder
     {
-        public abstract void BuildName(string name);
-        public abstract void BuildBreed(string breed);
-        public abstract void BuildAge(int age);
-        public abstract void BuildAddToy(string toy);
+        public abstract DogBuilder BuildName(string name);
+        public abstract DogBuilder BuildBreed(string breed);
+        public abstract DogBuilder BuildAge(int age);
+        public abstract DogBuilder BuildAddToys(List<string> toys);
 
-        public abstract Dog Build();
+        public abstract Dog GetDog();
     }
 }
